@@ -168,7 +168,7 @@ export default function Home() {
 
 
             {/* ── Hero Text Section ─────────────────────────────────────────────── */}
-            <section ref={heroTextRef} className="px-6 max-w-7xl mx-auto relative z-10 flex flex-col justify-center min-h-[50vh] xl:min-h-[60vh]">
+            <section ref={heroTextRef} className="px-6 max-w-7xl mx-auto relative z-10 flex flex-col justify-center min-h-[50vh] xl:min-h-[55vh]">
 
                 {/* 1. PHONE DESIGN (Visible on screens smaller than 768px) */}
                 <div className="block md:hidden pt-24 pb-12">
@@ -246,7 +246,7 @@ export default function Home() {
                 </div>
 
                 {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
-                <div className="hidden xl:block pt-48 pb-24">
+                <div className="hidden xl:block pt-28 pb-16">
                     <div className="mb-16 h-32 flex items-center">
                         <AnimatePresence mode="wait">
                             <br></br>
@@ -296,7 +296,7 @@ export default function Home() {
                 </div>
 
                 {/* 4. MAC M4 / LARGE DISPLAY DESIGN (Visible on 1280px and above) */}
-                <div className="hidden xl:block mt-32 pb-[25vh]">
+                <div className="hidden xl:block mt-16 pb-[18vh]">
                     <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-20 rounded-3xl flex flex-col items-center justify-center">
                         <h2 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 tracking-tighter drop-shadow-md">
                             contact me if you like the story
