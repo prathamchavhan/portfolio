@@ -21,7 +21,7 @@ const songs = [
     { title: "Hotel California", artist: "Eagles", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" },
 ];
 
-export default function IPodWidget() {
+export default function IPodWidget({ externalOpen = false, onExternalClose }) {
     const [isOpen, setIsOpen] = useState(false);
     const [currentSong, setCurrentSong] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -46,6 +46,16 @@ export default function IPodWidget() {
             audio.pause();
         }
     }, [isPlaying, isOpen, currentSong]);
+
+    // Sync with external open state (from dock)
+    useEffect(() => {
+        if (externalOpen) setIsOpen(true);
+    }, [externalOpen]);
+
+    const handleClose = () => {
+        setIsOpen(false);
+        onExternalClose?.();
+    };
 
     const handlePlayPause = (e) => {
         e.stopPropagation();
@@ -101,38 +111,6 @@ export default function IPodWidget() {
                 onEnded={nextSong}
             />
 
-            {/* Desktop Icon (Draggable) */}
-            <motion.div
-                drag
-                dragMomentum={false}
-                className="fixed bottom-20 right-6 sm:absolute sm:bottom-80 lg:bottom-[22rem] sm:right-auto sm:left-6 lg:left-24 z-50 flex flex-col items-center justify-center gap-1.5 cursor-pointer group"
-                onClick={() => setIsOpen(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-            >
-                <div className="relative flex items-center justify-center transition-transform group-hover:scale-110">
-                    <img
-                        src="/assets/ipod.png"
-                        alt="iPod Icon"
-                        className="w-8 sm:w-10 h-auto drop-shadow-md"
-                        draggable={false}
-                        onError={(e) => {
-                            // Fallback if the user hasn't named the file correctly yet
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'flex';
-                        }}
-                    />
-                    {/* Fallback CSS iPod if the image is missing */}
-                    <div className="hidden w-8 h-[44px] bg-white rounded shadow-lg border border-gray-200 flex flex-col items-center p-1">
-                        <div className="w-full h-4 bg-black rounded-sm border border-gray-800" />
-                        <div className="w-5 h-5 mt-1 bg-gray-100 rounded-full border border-gray-300" />
-                    </div>
-                </div>
-                <span className="text-xs font-semibold text-[#0f172a] dark:text-gray-200 group-hover:bg-blue-600 group-hover:text-white px-1.5 py-0.5 rounded transition-colors shadow-sm">
-                    iPod
-                </span>
-            </motion.div>
-
             {/* Modal Window Wrapper */}
             <AnimatePresence>
                 {isOpen && (
@@ -148,7 +126,7 @@ export default function IPodWidget() {
                             {/* Fake Mac Window Header */}
                             <div className="h-8 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border-b border-gray-300 dark:border-gray-700 flex items-center px-4 cursor-grab active:cursor-grabbing justify-between shrink-0">
                                 <div className="flex gap-2">
-                                    <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-red-600 shadow-inner border border-black/10" />
+                                    <button onClick={(e) => { e.stopPropagation(); handleClose(); }} className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-red-600 shadow-inner border border-black/10" />
                                     <button className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-inner border border-black/10" />
                                     <button className="w-3.5 h-3.5 rounded-full bg-[#27c93f] shadow-inner border border-black/10" />
                                 </div>

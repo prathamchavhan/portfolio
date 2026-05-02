@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import gsap from "gsap";
-import { useTheme } from "next-themes";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import IPodWidget from "./IPodWidget";
 import ResumeWidget from "./ResumeWidget";
+import { Button } from "@/components/ui/button"
+import { MapPin } from "lucide-react"
 
 
 function StarField() {
@@ -20,7 +20,6 @@ function StarField() {
         let W = canvas.width = window.innerWidth;
         let H = canvas.height = window.innerHeight;
 
-        // Generate stars
         const STAR_COUNT = 220;
         const stars = Array.from({ length: STAR_COUNT }, () => ({
             x: Math.random() * W,
@@ -38,35 +37,24 @@ function StarField() {
         const draw = () => {
             ctx.clearRect(0, 0, W, H);
             frame += 0.016;
-
             stars.forEach((s) => {
-                // Sine-based twinkle
                 s.alpha = s.baseAlpha * (0.5 + 0.5 * Math.sin(frame / s.twinkleSpeed + s.twinkleOffset));
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255,255,255,${s.alpha.toFixed(3)})`;
                 ctx.fill();
             });
-
             rafId = requestAnimationFrame(draw);
         };
-
         draw();
 
         const onResize = () => {
             W = canvas.width = window.innerWidth;
             H = canvas.height = window.innerHeight;
-            stars.forEach((s) => {
-                s.x = Math.random() * W;
-                s.y = Math.random() * H;
-            });
+            stars.forEach((s) => { s.x = Math.random() * W; s.y = Math.random() * H; });
         };
         window.addEventListener("resize", onResize);
-
-        return () => {
-            cancelAnimationFrame(rafId);
-            window.removeEventListener("resize", onResize);
-        };
+        return () => { cancelAnimationFrame(rafId); window.removeEventListener("resize", onResize); };
     }, []);
 
     return (
@@ -77,274 +65,155 @@ function StarField() {
     );
 }
 
-// ── Animation variants ────────────────────────────────────────────────────────
-const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.35 } },
-};
-
-const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const badges = [
-    { label: "Full Stack Developer", light: "bg-orange-70 text-orange-700", dark: "dark:bg-orange-500/15 dark:text-orange-200" },
-    { label: "AI Enthusiast", light: "bg-sky-90 text-sky-700", dark: "dark:bg-sky-500/15 dark:text-sky-300" },
-    { label: "SaaS Builder", light: "bg-pink-90 text-pink-700", dark: "dark:bg-pink-500/15 dark:text-pink-300" },
-];
-
 export default function Hero() {
-    const imageCardRef = useRef(null);
-    const floatTl = useRef(null);
+    const [ipodOpen, setIpodOpen] = useState(false);
+    const [resumeOpen, setResumeOpen] = useState(false);
 
-    // Auto-restart the text assembly animation every 8 seconds
-    const [playKey, setPlayKey] = useState(0);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setPlayKey(prev => prev + 1);
-        }, 10000); // 5s animation + 5s rest
-        return () => clearInterval(interval);
-    }, []);
+
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 });
+    const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 });
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["35deg", "-35deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-35deg", "35deg"]);
+
+    // Added translation/shift effect
+    const translateX = useTransform(mouseXSpring, [-0.5, 0.5], ["-40px", "40px"]);
+    const translateY = useTransform(mouseYSpring, [-0.5, 0.5], ["-40px", "40px"]);
+
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
 
     return (
-        <section className="relative min-h-screen w-full flex items-center overflow-hidden bg-white dark:bg-[#0a0a0f] transition-colors duration-500 font-mono">
-
-            {/* ── Light mode: subtle dot grid ───────────────────────────────── */}
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 dark:hidden"
-                style={{
-                    backgroundImage: "radial-gradient(circle, #d1d5db 1px, transparent 1px)",
-                    backgroundSize: "28px 28px",
-                    opacity: 0.5,
-                }}
-            />
+        <section id="hero" className="relative min-h-[80vh] md:min-h-[85vh] w-full flex items-center overflow-hidden duration-500 font-mono">
 
 
-            <StarField />
 
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 dark:hidden"
-                style={{ background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 40%, #f5f5f3 100%)" }}
-            />
 
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 hidden dark:block"
-                style={{ background: "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 50%, #000000 100%)" }}
-            />
 
-            <div className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-10 pt-28 pb-16 flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16">
 
+
+            <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-10 pt-2 pb-4 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
 
                 <motion.div
-                    className="flex flex-col gap-5 order-2 lg:order-1 max-w-2xl"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
+                    className="w-56 h-64 md:w-72 md:h-80 shrink-0 relative rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] cursor-grab active:cursor-grabbing"
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    drag
+                    dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
+                    dragElastic={0.2}
+                    style={{
+                        rotateX,
+                        rotateY,
+                        x: translateX,
+                        y: translateY,
+                        transformStyle: "preserve-3d"
+                    }}
                 >
-                    <motion.p
-                        variants={fadeUp}
-                        className="text-[1.2rem] sm:text-[2rem] font-medium text-[#0f172a] dark:text-white/80 tracking-normal select-none pl-6 sm:pl-10"
-                    >
-                        Hi 👋
-                    </motion.p>
+                    <Image
+                        src="/assets/smile.png"
+                        alt="Profile"
+                        fill
+                        className="object-cover"
+                    />
+                </motion.div>
 
-                    <motion.h1
-                        variants={fadeUp}
-                        className="text-[1.9rem] sm:text-[2.4rem] xl:text-[2.9rem] font-semibold leading-[1.15] tracking-[-0.01em] text-[#0f172a] dark:text-white pl-6 sm:pl-10"
-                    >
-                        I'm{" "}
-                        <motion.span
-                            drag
-                            dragMomentum={false}
-                            className="relative inline-flex h-[1.2em] overflow-visible align-bottom pr-2 cursor-grab active:cursor-grabbing z-[100] origin-[0_0] bg-transparent"
-                            whileHover={{ scale: 2.05 }}
-                            whileDrag={{ scale: 1.1, rotate: "-2deg" }}
+
+                <div className="flex flex-col items-start text-left max-w-2xl relative w-full">
+
+                    <div className="hidden lg:flex absolute -right-16 xl:-right-32 top-0 flex-col items-center gap-1 z-20">
+                        <span className="font-notosans text-[13px] tracking-wider text-[#888888] uppercase mb-1">Play Music</span>
+
+                        <Button
+                            variant="ghost"
+                            onClick={() => setIpodOpen(true)}
+                            className="p-0 h-auto hover:bg-transparent"
                         >
-                            <span key={playKey} className="relative inline-flex h-[1.2em] pointer-events-none">
-                                {/* Animated Fake Cursor that 'fixes' the letters */}
-                                <motion.svg
-                                    width="32" height="32" viewBox="0 0 24 24"
-                                    className="absolute pointer-events-none z-[200] text-[#0f172a] dark:text-gray-300 drop-shadow-xl"
-                                    initial={{ left: "150%", top: "150%", opacity: 0 }}
-                                    animate={{
-                                        left: ["150%", "2%", "16%", "30%", "48%", "62%", "76%", "91%", "150%"],
-                                        top: ["150%", "50%", "50%", "50%", "50%", "50%", "50%", "50%", "150%"],
-                                        opacity: [0, 1, 1, 1, 1, 1, 1, 1, 0],
-                                        scale: [1, 1, 0.85, 1, 0.85, 1, 0.85, 1, 0.85, 1, 0.85, 1, 0.85, 1, 0.85, 1, 1]
-                                    }}
-                                    transition={{
-                                        duration: 5,
-                                        times: [
-                                            0,    // Start
-                                            0.3,  // reaches P
-                                            0.38, // reaches r
-                                            0.46, // reaches a
-                                            0.54, // reaches t
-                                            0.62, // reaches h
-                                            0.70, // reaches a
-                                            0.78, // reaches m
-                                            1.0   // Flies away
-                                        ],
-                                        ease: "easeInOut",
-                                    }}
-                                >
-                                    <path fill="currentColor" stroke="rgba(255,255,255,0.5)" strokeWidth="0.5" d="M2.5 1 L2.5 22 L9 15 L14 24 L17 22 L11.5 13 L21 13 Z" />
-                                </motion.svg>
-
-                                {"Pratham".split("").map((char, index) => {
-                                    // Specific broken scattering to make it look manually scattered
-                                    const misalignments = [
-                                        { y: -18, rotate: -35, x: -8 }, // P
-                                        { y: 14, rotate: 25, x: 6 },    // r
-                                        { y: -12, rotate: -15, x: -4 }, // a
-                                        { y: 22, rotate: 32, x: 10 },   // t
-                                        { y: -8, rotate: -20, x: -5 },  // h
-                                        { y: 16, rotate: 28, x: 7 },    // a
-                                        { y: -22, rotate: 15, x: -3 }   // m
-                                    ];
-                                    const start = misalignments[index];
-
-                                    return (
-                                        <span key={index} className="relative inline-flex flex-col h-[1.2em]">
-                                            <motion.span
-                                                initial={{ y: start.y, x: start.x, rotate: start.rotate, opacity: 0 }}
-                                                animate={{
-                                                    y: [start.y, start.y, 0],
-                                                    x: [start.x, start.x, 0],
-                                                    rotate: [start.rotate, start.rotate, 0],
-                                                    opacity: [0, 1, 1]
-                                                }}
-                                                transition={{
-                                                    duration: 1.5 + index * 0.4 + 0.3,
-                                                    times: [
-                                                        0,
-                                                        (1.5 + index * 0.4 - 0.1) / (1.5 + index * 0.4 + 0.3), // Wait perfectly broken until cursor touches
-                                                        1 // Snap into right alignment
-                                                    ],
-                                                    ease: "backOut"
-                                                }}
-                                                className="flex flex-col"
-                                            >
-                                                <span className="h-[1.2em] flex items-center justify-center relative z-10">{char}</span>
-                                            </motion.span>
-                                        </span>
-                                    );
-                                })}
-                            </span>
-
-                            <motion.span
-                                className="absolute bottom-1 left-0 h-[3px] rounded-full bg-[#0f172a] dark:bg-white pointer-events-none"
-                                initial={{ width: 0 }}
-                                animate={{ width: "100%" }}
-                                transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            <Image
+                                src="/assets/ipod.png"
+                                alt="Open iPod Widget"
+                                width={46}
+                                height={46}
+                                className="object-contain hover:scale-110 transition duration-300"
                             />
-                        </motion.span>
-                        , and I love crafting fun things with passionate people!
-                    </motion.h1>
-
-                    {/* Badges */}
-
-                    <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 mt-1 pl-6 sm:pl-10">
-                        {badges.map((badge, i) => (
-                            <motion.span
-                                key={badge.label}
-                                initial={{ opacity: 0, scale: 1.85 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 1.2 + i * 0.9, duration: 1.75, ease: [0.22, 1, 0.36, 1] }}
-                                whileHover={{ scale: 1.07, y: -2 }}
-                                className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold cursor-default select-none ${badge.light} ${badge.dark}`}
-                            >
-                                <span className="text-base leading-none">{badge.icon}</span>
-                                {badge.label}
-                            </motion.span>
-                        ))}
-                    </motion.div>
-
-
-                    <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-3 pl-6 sm:pl-10">
-                        <motion.a
-                            href="#work"
-                            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-8 py-2 bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 shadow-md"
-                            whileHover={{ scale: 1.04, y: -1 }}
-                            whileTap={{ scale: 0.97 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                        >
-                            View My Work →
-                        </motion.a>
-
-
-                    </motion.div>
-                </motion.div>
-
-                {/* RIGHT ────────────────────────────────────────────────────── */}
-                <motion.div
-                    className="flex justify-center flex-shrink-0 order-1 lg:order-2"
-                    initial={{ opacity: 0, scale: 0.88, y: 40 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-                >
-                    <div ref={imageCardRef} className="relative group" style={{ perspective: "800px" }}>
-                        <motion.div
-                            drag
-                            dragMomentum={false}
-                            className="relative w-72 sm:w-40 xl:w-96 rounded-3xl overflow-hidden shadow-2xl dark:shadow-[0_25px_70px_rgba(255,255,255,0.06)]"
-                            style={{ rotate: "5deg", transformStyle: "preserve-3d" }}
-                            whileHover={{
-                                rotate: "0deg", scale: 1.03,
-                                transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-                            }}
-                            whileDrag={{ scale: 1.05, rotate: "0deg", boxShadow: "0 30px 60px rgba(0,0,0,0.3)" }}
-                        >
-                            <div className="relative w-full aspect-[1/1] bg-gray-100 dark:bg-neutral-900 pointer-events-none">
-                                <Image
-                                    src="/assets/newside.jpeg"
-                                    alt="Pratham Chavhan"
-                                    fill
-                                    className="object-cover object-top"
-                                    priority
-                                    draggable={false}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-                            </div>
-
-                        </motion.div>
-
-
-                        {/* Decorative ring */}
-                        <motion.div
-                            className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full border-4 border-gray-300 dark:border-white/20 opacity-60"
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        />
+                        </Button>
                     </div>
-                </motion.div>
 
+                    <p className="text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#666666] uppercase mb-4 md:mb-6">
+                        Full Stack Developer + AI BUILDER
+                    </p>
+
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-black dark:text-[#EAEAEA] leading-[1.05] mb-6">
+                        Creating scalable
+                        <br className="hidden md:block" />
+                        products across the full stack<span className="text-[#F2542D]">.</span>
+                    </h1>
+
+                    <p className="text-base md:text-[17px] text-[#444444] dark:text-[#A3A3A3] font-light leading-relaxed mb-10 max-w-xl">
+                        Obsessed with building digital products that feel as good as they function.
+                    </p>
+
+
+                    <Button asChild variant="ghost" className="p-0 h-auto hover:bg-transparent">
+                        <a
+                            href="https://www.google.com/maps?q=Nagpur,+Maharashtra,+India"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm text-[#444444] dark:text-[#777777] hover:text-black dark:hover:text-white transition"
+                        >
+                            <MapPin size={14} />
+                            <span className="border-b border-dashed border-[#444444] pb-[1px]">
+                                Nagpur, Maharashtra, India
+                            </span>
+                        </a>
+                    </Button>
+                </div>
             </div>
 
-            {/* ── Scroll hint ───────────────────────────────────────────────── */}
-            <motion.div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-gray-400 dark:text-white/30"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
-            >
-                <span className="text-xs tracking-widest uppercase font-semibold">Scroll</span>
-                <motion.div
-                    className="w-px h-8 bg-gradient-to-b from-gray-400 dark:from-white/30 to-transparent"
-                    animate={{ scaleY: [1, 0.5, 1], opacity: [1, 0.4, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                />
-            </motion.div>
+            {/* Resume Button (Absolute Bottom Left) */}
+            <div className="absolute left-9 bottom-10 md:left-24 md:bottom-16 z-20 flex items-center gap-1">
+                <Button
+                    variant="ghost"
+                    onClick={() => setResumeOpen(true)}
+                    className="p-0 h-auto hover:bg-transparent group"
+                >
+                    <div className="w-[55px] h-[55px] flex items-center justify-center relative hover:scale-[1.15] transition duration-300 transform origin-bottom-left pt-3">
+                        <Image
+                            src="/assets/resume.png"
+                            alt="Resume Graphic"
+                            width={50}
+                            height={50}
+                            className="object-contain drop-shadow-2xl"
+                        />
+                    </div>
+                </Button>
+                <div className="hidden md:flex flex-col items-start gap-0 text-[#888888] ml-2">
+                    <svg width="3" height="22" viewBox="0 0 40 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 mt-1 mb-1">
+                        <path d="M5 5 C 20 5, 25 10, 34 18" />
+                        <path d="M28 12 L 34 18 L 25 20" />
+                    </svg>
+                    <span className="font-notosans text-[12px] tracking-wider uppercase ml-1" style={{ color: '#A3A3A3' }}>Resume</span>
+                </div>
+            </div>
 
-            {/* iPod Interactive Widget */}
-            <IPodWidget />
-
-            {/* Resume Interactive Widget */}
-            <ResumeWidget />
+            <IPodWidget externalOpen={ipodOpen} onExternalClose={() => setIpodOpen(false)} />
+            <ResumeWidget externalOpen={resumeOpen} onExternalClose={() => setResumeOpen(false)} />
         </section>
     );
 }

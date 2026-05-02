@@ -1,40 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useDragControls } from "framer-motion";
 import { X, Download, FileText } from "lucide-react";
 
-export default function ResumeWidget() {
+export default function ResumeWidget({ externalOpen = false, onExternalClose }) {
     const [isOpen, setIsOpen] = useState(false);
     const controls = useDragControls();
 
+    useEffect(() => {
+        if (externalOpen) setIsOpen(true);
+    }, [externalOpen]);
+
+    const handleClose = () => {
+        setIsOpen(false);
+        onExternalClose?.();
+    };
+
     return (
         <>
-            {/* Draggable Desktop CV Icon */}
-            <motion.div
-                drag
-                dragMomentum={false}
-                className="fixed top-28 right-6 sm:absolute sm:top-36 lg:top-40 sm:right-10 lg:right-24 z-40 flex flex-col items-center justify-center gap-1.5 cursor-pointer group"
-                onClick={() => setIsOpen(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                title="View Resume"
-            >
-                {/* CV Icon wrapper */}
-                <div className="relative w-14 h-14 ">
-                    <Image
-                        src="/assets/cv-icon.png"
-                        alt="Resume/CV"
-                        fill
-                        className="object-contain p-2"
-                        draggable={false}
-                    />
-                </div>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm text-gray-700 dark:text-gray-300 shadow-sm border border-gray-200 dark:border-gray-700 select-none">
-                    CV
-                </span>
-            </motion.div>
 
             {/* Modal Overlay Windows */}
             <AnimatePresence>
@@ -47,7 +32,7 @@ export default function ResumeWidget() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            onClick={() => setIsOpen(false)}
+                            onClick={handleClose}
                         />
 
                         {/* PDF Modal Container */}
@@ -68,7 +53,7 @@ export default function ResumeWidget() {
                                 className="h-12 bg-gray-100 dark:bg-[#11131a] border-b border-gray-200 dark:border-white/10 flex items-center justify-between px-4 cursor-grab active:cursor-grabbing shrink-0 transition-colors touch-none"
                             >
                                 <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]" onClick={() => setIsOpen(false)} />
+                                    <div className="w-3 h-3 rounded-full bg-[#ff5f56] cursor-pointer" onClick={handleClose} />
                                     <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
                                     <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
                                     <span className="ml-3 text-sm font-medium text-gray-500 dark:text-gray-400 select-none flex items-center gap-1.5">
