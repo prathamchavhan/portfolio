@@ -57,9 +57,9 @@ function AutoSlideshowImages({ images }) {
 }
 
 const PlusMarker = ({ x, y }) => (
-    <svg className="absolute transform -translate-x-1/2 -translate-y-1/2 pointer-events-none stroke-black/25 dark:stroke-white/25" style={{ left: x, top: y, width: 12, height: 12 }} viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="6" x2="12" y2="6" stroke="currentColor" strokeWidth={1} />
-        <line x1="6" y1="0" x2="6" y2="12" stroke="currentColor" strokeWidth={1} />
+    <svg className="absolute transform -translate-x-1/2 -translate-y-1/2 pointer-events-none stroke-black/[0.15] dark:stroke-white/25" style={{ left: x, top: y, width: 12, height: 12 }} viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="6" x2="12" y2="6" strokeWidth={1} />
+        <line x1="6" y1="0" x2="6" y2="12" strokeWidth={1} />
     </svg>
 );
 

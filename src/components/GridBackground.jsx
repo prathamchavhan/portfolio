@@ -111,8 +111,7 @@ export default function GridBackground({ seed = 101 }) {
         return bestBox || heroBoxes[heroBoxes.length - 1];
     }, [boxes, dimensions.w]);
 
-    // Large-cell grid lines for the About section only
-    // cellW / cellH define the size of each About-section grid cell
+
     const aboutGrid = useMemo(() => {
         if (!aboutRect.height || dimensions.w === 0) return { lines: [], imageCell: null };
 
@@ -120,8 +119,8 @@ export default function GridBackground({ seed = 101 }) {
         const y0 = aboutRect.top;
         const W = dimensions.w;
         const H = aboutRect.height;
-        const cellW = Math.round(W / 3);   // 3 columns — large cells
-        const cellH = Math.round(H / 2);   // 2 rows
+        const cellW = Math.round(W / 3);
+        const cellH = Math.round(H / 2);
 
         // Vertical lines
         const vLines = [];
@@ -191,9 +190,7 @@ export default function GridBackground({ seed = 101 }) {
                 </div>
             )}
 
-            {/* About section background image and overlay are removed. Global grid is skipped here. */}
 
-            {/* Grid lines — skipping the work section area */}
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="100%"
