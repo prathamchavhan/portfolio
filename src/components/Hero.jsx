@@ -138,7 +138,10 @@ export default function Hero() {
                 <div className="flex flex-col items-start text-left max-w-2xl relative w-full">
 
                     <div className="hidden lg:flex absolute -right-16 xl:-right-32 top-0 flex-col items-center gap-1 z-20">
-                        <span className="font-notosans text-[13px] tracking-wider text-[#888888] uppercase mb-1">Play Music</span>
+                        <div className="flex items-end gap-1 mb-2">
+                            <span className="-rotate-[12deg] text-[20px] text-[#A3A3A3] mr-2" style={{ fontFamily: 'var(--font-edu-tas)' }}>Play Music</span>
+
+                        </div>
 
                         <Button
                             variant="ghost"
@@ -188,27 +191,26 @@ export default function Hero() {
 
             {/* Resume Button (Absolute Bottom Left) */}
             <div className="absolute left-9 bottom-10 md:left-24 md:bottom-16 z-20 flex items-center gap-1">
-                <Button
-                    variant="ghost"
-                    onClick={() => setResumeOpen(true)}
-                    className="p-0 h-auto hover:bg-transparent group"
-                >
-                    <div className="w-[55px] h-[55px] flex items-center justify-center relative hover:scale-[1.15] transition duration-300 transform origin-bottom-left pt-3">
-                        <Image
-                            src="/assets/resume.png"
-                            alt="Resume Graphic"
-                            width={50}
-                            height={50}
-                            className="object-contain drop-shadow-2xl"
-                        />
-                    </div>
-                </Button>
-                <div className="hidden md:flex flex-col items-start gap-0 text-[#888888] ml-2">
-                    <svg width="3" height="22" viewBox="0 0 40 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 mt-1 mb-1">
-                        <path d="M5 5 C 20 5, 25 10, 34 18" />
-                        <path d="M28 12 L 34 18 L 25 20" />
-                    </svg>
-                    <span className="font-notosans text-[12px] tracking-wider uppercase ml-1" style={{ color: '#A3A3A3' }}>Resume</span>
+                <div className="hidden md:flex flex-col items-start gap-0 text-[#A3A3A3] ml-3 mb-4">
+                    <span className="text-[20px] rotate-[8deg] ml-6 mb-1" style={{ fontFamily: 'var(--font-edu-tas)' }}>Resume</span>
+
+                    <Button
+                        variant="ghost"
+                        onClick={() => setResumeOpen(true)}
+                        className="p-0 h-auto hover:bg-transparent group"
+                    >
+                        <div className="w-[55px] h-[55px] flex items-center justify-center relative hover:scale-[1.15] transition duration-300 transform origin-bottom-left pt-3">
+                            <Image
+                                src="/assets/resume.png"
+                                alt="Resume Graphic"
+                                width={50}
+                                height={50}
+                                className="object-contain drop-shadow-2xl"
+                            />
+                        </div>
+
+                    </Button>
+
                 </div>
             </div>
 

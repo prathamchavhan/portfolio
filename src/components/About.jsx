@@ -27,7 +27,6 @@ function RevealText({ children, className, delay = 0 }) {
     );
 }
 
-/* ── Auto Slideshow Image ── */
 function AutoSlideshowImages({ images }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -107,7 +106,7 @@ export default function About() {
 
                     <div className="space-y-6">
                         <RevealText
-                            className="text-black dark:text-[#FFFFFF] text-[26px] md:text-[20px] leading-[1.9] font-sans tracking-wide "
+                            className="text-black dark:text-[#FFFFFF] text-[26px] md:text-[20px] leading-[1.9] tracking-wide "
                             delay={0}
                         >
                             I am Pratham a Full Stack Developer and AI enthusiast obsessed with building digital products that just feel right. Our expertise spans web design, frontend development, backend systems, and modern cloud deployment.
