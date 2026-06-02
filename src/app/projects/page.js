@@ -7,7 +7,7 @@ export default function ProjectsPage() {
         <main className="min-h-screen bg-[#151515] text-[#EAEAEA] font-mono">
             <PortfolioHeader />
             <div className="max-w-6xl mx-auto pt-32 px-6 sm:px-10">
-                <Link href="/" className="inline-flex items-center gap-2 text-[#888] hover:text-white transition mb-12">
+                <Link href="https://github.com/prathamchavhan" className="inline-flex items-center gap-2 text-[#888] hover:text-white transition mb-12">
                     <ArrowLeft size={16} /> Back to Home
                 </Link>
 

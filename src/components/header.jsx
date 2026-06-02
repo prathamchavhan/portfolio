@@ -47,7 +47,7 @@ export default function PortfolioHeader() {
                     <a
                         href="/resume.pdf"
                         download
-                        className=" flex items-center gap-2 px-5 py-2 rounded-lg border border-[#6F6F6F] text-[#6F6F6F] hover:text-black dark:hover:text-[#EAEAEA] transition duration-300"
+                        className=" flex items-center gap-2 px-5 py-2  text-white hover:text-black dark:hover:text-[#EAEAEA] transition duration-300"
                     >
                         <FiDownload size={16} />
                         Resume

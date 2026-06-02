@@ -1,6 +1,6 @@
 import { Inter, DM_Mono, Noto_Sans, Edu_TAS_Beginner } from 'next/font/google';
 import './globals.css';
-import GridBackground from '@/components/GridBackground';
+
 import CustomCursor from '@/components/CustomCursor';
 import GlobalClickSound from '@/components/GlobalClickSound';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -58,14 +58,14 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      <body className={`${inter.variable} ${dmMono.variable} ${notoSans.variable} ${eduTas.variable} ${inter.className} text-white antialiased min-h-screen transition-colors duration-500`} style={{ backgroundColor: '#151515' }}>
+      <body className={`${inter.variable} ${dmMono.variable} ${notoSans.variable} ${eduTas.variable} ${inter.className} text-white antialiased min-h-screen transition-colors duration-500`} style={{ backgroundColor: '#121111ff' }}>
         <ReduxProvider>
           <SmoothScroll>
             <GlobalClickSound />
             <CustomCursor />
             <ThemeToggle />
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <GridBackground />
+
               {children}
             </div>
           </SmoothScroll>
