@@ -15,7 +15,7 @@ const projects = [
         year: YEAR_NOW,
         image: "/assets/data.png",
         link: "#",
-        bgColor: "#0f1117",
+        bgColor: "#000000",
     },
     {
         title: "Modern Chat Interface",
@@ -135,7 +135,7 @@ export default function Work() {
         <section
             ref={sectionRef}
             id="work"
-            className="relative w-full bg-transparent font-mono"
+            className="relative w-full bg-transparent font-mono pb-40"
         >
             <div className="relative z-10 w-full pb-0">
                 <div className="pt-8 pb-12 md:pt-10 md:pb-16 w-full flex flex-col justify-start px-10 md:px-20 max-w-7xl mx-auto">
@@ -143,7 +143,7 @@ export default function Work() {
                         Selected Works
                     </p>
 
-                    <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-black dark:text-[#EAEAEA]">
+                    <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-white dark:text-[#EAEAEA]">
                         Featured Projects
                         <span className="text-[#F2542D]">.</span>
                     </h2>
@@ -172,14 +172,14 @@ export default function Work() {
                             href="https://github.com/prathamchavhan"
                             className="group flex flex-col items-center justify-center gap-6"
                         >
-                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#111] border border-[#333] flex items-center justify-center group-hover:bg-[#EAEAEA] transition duration-500 shadow-2xl group-hover:scale-105">
+                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-black border border-white/10 flex items-center justify-center group-hover:bg-[#EAEAEA] transition duration-500 shadow-2xl group-hover:scale-105">
                                 <ArrowUpRight
                                     size={48}
                                     className="text-[#EAEAEA] group-hover:text-[#151515] transition duration-500"
                                 />
                             </div>
 
-                            <h3 className="text-xl md:text-2xl font-medium text-black dark:text-[#EAEAEA] tracking-wider group-hover:text-[#F2542D] transition duration-300">
+                            <h3 className="text-xl md:text-2xl font-medium text-white dark:text-[#EAEAEA] tracking-wider group-hover:text-[#F2542D] transition duration-300">
                                 Show All Projects
                             </h3>
                         </Link>

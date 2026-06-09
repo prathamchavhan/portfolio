@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
           }
         `}} />
       </head>
-      <body className={`${inter.variable} ${dmMono.variable} ${notoSans.variable} ${eduTas.variable} ${inter.className} text-white antialiased min-h-screen transition-colors duration-500`} style={{ backgroundColor: '#121111ff' }}>
+      <body className={`${inter.variable} ${dmMono.variable} ${notoSans.variable} ${eduTas.variable} ${inter.className} text-white antialiased min-h-screen transition-colors duration-500`} style={{ backgroundColor: '#000000' }}>
         <ReduxProvider>
           <SmoothScroll>
             <GlobalClickSound />

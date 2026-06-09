@@ -121,7 +121,7 @@ export default function IPodWidget({ externalOpen = false, onExternalClose }) {
                             exit={{ opacity: 0, scale: 0.8, y: 30 }}
                             drag
                             dragMomentum={false}
-                            className="pointer-events-auto relative w-full sm:w-[340px] max-w-[340px] h-full sm:h-[550px] max-h-[550px] bg-white dark:bg-[#1a1c23] sm:rounded-2xl rounded-xl shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden flex flex-col"
+                            className="pointer-events-auto relative w-full sm:w-[340px] max-w-[340px] h-full sm:h-[550px] max-h-[550px] bg-white dark:bg-black sm:rounded-2xl rounded-xl shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden flex flex-col"
                         >
                             {/* Fake Mac Window Header */}
                             <div className="h-8 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border-b border-gray-300 dark:border-gray-700 flex items-center px-4 cursor-grab active:cursor-grabbing justify-between shrink-0">

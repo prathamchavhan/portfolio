@@ -15,10 +15,10 @@ export default function ThemeToggle() {
         const root = document.documentElement;
         if (theme === 'dark') {
             root.classList.add('dark');
-            root.style.setProperty('--background', '#151515');
+            root.style.setProperty('--background', '#000000');
             root.style.setProperty('--foreground', '#ffffff');
             // update hardcoded body styles
-            document.body.style.backgroundColor = '#151515';
+            document.body.style.backgroundColor = '#000000';
             document.body.style.color = '#ffffff';
             document.body.classList.remove('text-black');
             document.body.classList.add('text-white');

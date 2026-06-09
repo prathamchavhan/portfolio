@@ -155,11 +155,11 @@ export default function Hero() {
                         </Button>
                     </div>
 
-                    <p className="text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#666666] uppercase mb-4 md:mb-6">
+                    <p className="text-[13px] md:text-xs font-semibold tracking-[0.2em] text-[#666666] uppercase mb-4 md:mb-6">
                         Full Stack Developer + AI BUILDER
                     </p>
 
-                    <h1 className="text-4xl md:text-4xl lg:text-4xl font-medium tracking-tight text-black dark:text-[#EAEAEA] leading-[1.05] mb-6">
+                    <h1 className="text-4xl md:text-4xl lg:text-5xl font-medium tracking-tight text-black dark:text-[#EAEAEA] leading-[1.05] mb-6">
                         Creating scalable
                         <br className="hidden md:block" />
                         products across the full stack<span className="text-[#F2542D]">.</span>

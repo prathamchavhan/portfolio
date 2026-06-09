@@ -45,12 +45,12 @@ export default function ResumeWidget({ externalOpen = false, onExternalClose }) 
                             dragMomentum={false}
                             // Prevents dragging from triggering if users interact with internal iframe scroll
                             dragListener={false}
-                            className="pointer-events-auto relative w-full sm:w-[90vw] max-w-[800px] h-[85vh] sm:h-[80vh] bg-white dark:bg-[#1a1c23] sm:rounded-2xl rounded-xl shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden flex flex-col"
+                            className="pointer-events-auto relative w-full sm:w-[90vw] max-w-[800px] h-[85vh] sm:h-[80vh] bg-white dark:bg-black sm:rounded-2xl rounded-xl shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden flex flex-col"
                         >
                             {/* Header / Nav Bar (Draggable Handler) */}
                             <motion.div
                                 onPointerDown={(e) => controls.start(e)}
-                                className="h-12 bg-gray-100 dark:bg-[#11131a] border-b border-gray-200 dark:border-white/10 flex items-center justify-between px-4 cursor-grab active:cursor-grabbing shrink-0 transition-colors touch-none"
+                                className="h-12 bg-gray-100 dark:bg-black border-b border-gray-200 dark:border-white/10 flex items-center justify-between px-4 cursor-grab active:cursor-grabbing shrink-0 transition-colors touch-none"
                             >
                                 <div className="flex items-center gap-2">
                                     <div className="w-3 h-3 rounded-full bg-[#ff5f56] cursor-pointer" onClick={handleClose} />

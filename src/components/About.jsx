@@ -45,7 +45,7 @@ function AutoSlideshowImages({ images }) {
     }, [images]);
 
     return (
-        <div className="relative w-full h-[380px] sm:h-[450px] md:h-[550px] overflow-hidden bg-[#111]">
+        <div className="relative w-full h-[380px] sm:h-[450px] md:h-[550px] overflow-hidden bg-[#000000]">
             {images.map((imgSrc, index) => (
                 <Image
                     key={imgSrc}
@@ -68,7 +68,7 @@ export default function About() {
         <section
             ref={sectionRef}
             id="about"
-            className="relative w-full min-h-[85vh] pt-10 pb-24 px-4 sm:px-10 z-20 font-sans overflow-x-clip flex justify-center items-center bg-transparent"
+            className="relative w-full min-h-[85vh] pt-10 pb-24 px-4 sm:px-10 z-10 font-sans overflow-x-clip flex justify-center items-center bg-transparent"
         >
             <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row">
 
@@ -79,28 +79,28 @@ export default function About() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: false }}
                         transition={{ duration: 1.2 }}
-                        className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-black dark:text-white mb-12"
+                        className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white dark:text-white mb-12"
                     >
                         About Me
                     </motion.h2>
 
                     <div className="space-y-6">
                         <RevealText
-                            className="text-black dark:text-white text-[26px] md:text-[20px] leading-[1.9] tracking-wide"
+                            className="text-white dark:text-white text-[26px] md:text-[20px] leading-[1.9] tracking-wide"
                             delay={0}
                         >
                             I am Pratham a Full Stack Developer and AI enthusiast obsessed with building digital products that just feel right.
                         </RevealText>
 
                         <RevealText
-                            className="text-black dark:text-white text-[26px] md:text-[20px] leading-[1.9] tracking-wide"
+                            className="text-white dark:text-white text-[26px] md:text-[20px] leading-[1.9] tracking-wide"
                             delay={0.4}
                         >
                             With a focus on creativity, performance, and user experience, I build websites and applications that are visually engaging.
                         </RevealText>
 
                         <RevealText
-                            className="text-black dark:text-white text-[16px] md:text-[20px] leading-[1.9] tracking-wide"
+                            className="text-white dark:text-white text-[16px] md:text-[20px] leading-[1.9] tracking-wide"
                             delay={0.8}
                         >
                             I turn ideas into impactful digital products through clean design, scalable development, and reliable technology.
