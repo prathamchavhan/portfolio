@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-
+import { MapPin, Download } from "lucide-react"
 const LogoIcon = () => (
     <svg
         width="32"
@@ -71,6 +71,16 @@ export default function PortfolioHeader() {
                     >
                         INSTAGRAM
                     </a>
+                    <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-white hover:text-[#F2542D] transition-colors duration-300 py-0.5"
+                    >
+                        <Download size={14} />
+                        <span>RESUME</span>
+                    </a>
+
                 </div>
             </div>
 

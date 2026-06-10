@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import IPodWidget from "./IPodWidget";
 import ResumeWidget from "./ResumeWidget";
 import { Button } from "@/components/ui/button"
-import { MapPin } from "lucide-react"
+import { MapPin, Download } from "lucide-react"
 import TiltedCard from './TiltedCard';
 
 
@@ -77,21 +77,29 @@ export default function Hero() {
                     <p className="text-base md:text-[17px] text-[#444444] dark:text-[#A3A3A3] font-light leading-relaxed mb-10 max-w-xl">
                         Obsessed with building digital products that feel as good as they function.
                     </p>
-
-
-                    <Button asChild variant="ghost" className="p-0 h-auto hover:bg-transparent">
+                    <div className="flex items-center gap-10">
+                        <Button asChild variant="ghost" className="p-0 h-auto ">
+                            <a
+                                href="https://www.google.com/maps?q=Nagpur,+Maharashtra,+India"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-sm text-[#666666] underline-offset-1 "
+                            >
+                                <MapPin size={14} />
+                                <span>Nagpur, Maharashtra, India</span>
+                            </a>
+                        </Button>
+                        {/* 
                         <a
-                            href="https://www.google.com/maps?q=Nagpur,+Maharashtra,+India"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-sm text-[#444444] dark:text-[#777777] hover:text-black dark:hover:text-white transition"
+                            href="/resume.pdf"
+                            download
+                            className="flex items-center gap-1 text-sm  transition"
                         >
-                            <MapPin size={14} />
-                            <span className="border-b border-dashed border-[#444444] pb-[1px]">
-                                Nagpur, Maharashtra, India
-                            </span>
-                        </a>
-                    </Button>
+                            <Download size={14} />
+                            Download Resume
+                        </a> */}
+                    </div>
+
                 </div>
             </div>
 
