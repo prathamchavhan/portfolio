@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Github, Linkedin, ArrowUp, Send, Loader2 } from 'lucide-react';
+import { Github, Linkedin, ArrowUp, Send, Loader2, Copy, Check } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -10,8 +10,22 @@ import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
 
 export default function Footer() {
+    const [copied, setCopied] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const copyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText('chavhanpratham06@gmail.com');
+            setCopied(true);
+            toast.success("Email copied!");
+
+            setTimeout(() => {
+                setCopied(false);
+            }, 2000);
+        } catch (err) {
+            toast.error("Failed to copy email");
+        }
+    };
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -98,9 +112,26 @@ export default function Footer() {
                     </h2>
 
                     <div className="flex flex-col items-center lg:items-start gap-4 text-zinc-300 font-medium w-full mt-4 lg:mt-8">
-                        <a href="mailto:chavhanpratham06@gmail.com" className="hover:text-white transition-colors text-lg md:text-xl font-mono">
-                            chavhanpratham06@gmail.com
-                        </a>
+                        <div className="flex items-center gap-2">
+                            <a
+                                href="mailto:chavhanpratham06@gmail.com"
+                                className="hover:text-white transition-colors text-lg md:text-xl font-mono"
+                            >
+                                chavhanpratham06@gmail.com
+                            </a>
+
+                            <button
+                                onClick={copyEmail}
+                                className="text-zinc-400 hover:text-white transition-colors p-1 rounded-md hover:bg-white/10"
+                                aria-label="Copy email"
+                            >
+                                {copied ? (
+                                    <Check className="w-4 h-4 text-green-500" />
+                                ) : (
+                                    <Copy className="w-4 h-4" />
+                                )}
+                            </button>
+                        </div>
                         <a href="tel:+917499180533" className="hover:text-white transition-colors text-lg text-zinc-400">
                             +91 7499180533
                         </a>

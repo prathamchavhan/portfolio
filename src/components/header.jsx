@@ -33,8 +33,8 @@ export default function PortfolioHeader() {
                         <LogoIcon />
                     </Link>
                     <div className="flex flex-col leading-tight">
-                        <span className="text-[10px] font-bold tracking-[0.2em] text-[#666666] group-hover:text-white transition-colors duration-300">DARK MODE</span>
-                        <span className="text-[12px] font-bold tracking-[0.1em]">ON</span>
+                        {/* <span className="text-[10px] font-bold tracking-[0.2em] text-[#666666] group-hover:text-white transition-colors duration-300">PRATHAM&copy;</span> */}
+                        <span className="text-[15px] font-bold ">PRATHAM&copy;</span>
                     </div>
                 </div>
 

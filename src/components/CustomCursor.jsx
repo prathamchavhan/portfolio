@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function CustomCursor() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
     const [cursorLabel, setCursorLabel] = useState('');
 
     useEffect(() => {
@@ -14,6 +15,9 @@ export default function CustomCursor() {
         };
 
         const handleMouseOver = (e) => {
+            const skipCursor = e.target.closest('[data-hide-cursor="true"]');
+            setIsHidden(!!skipCursor);
+
             if (
                 e.target.tagName.toLowerCase() === 'button' ||
                 e.target.tagName.toLowerCase() === 'a' ||
@@ -60,8 +64,8 @@ export default function CustomCursor() {
                 animate={{
                     x: mousePosition.x - 6,
                     y: mousePosition.y - 6,
-                    scale: isHovering || hasLabel ? 0 : 1,
-                    opacity: hasLabel ? 0 : 1,
+                    scale: isHovering || hasLabel || isHidden ? 0 : 1,
+                    opacity: hasLabel || isHidden ? 0 : 1,
                 }}
                 transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
             />
@@ -92,7 +96,7 @@ export default function CustomCursor() {
                         <motion.div
                             key="ring"
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            animate={{ opacity: isHidden ? 0 : 1 }}
                             exit={{ opacity: 0 }}
                             className="w-10 h-10 border border-white/50 rounded-full"
                             style={{

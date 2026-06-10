@@ -135,7 +135,7 @@ export default function Work() {
         <section
             ref={sectionRef}
             id="work"
-            className="relative w-full bg-transparent font-mono pb-40"
+            className="relative w-full bg-transparent font-mono pb-28"
         >
             <div className="relative z-10 w-full pb-0">
                 <div className="pt-8 pb-12 md:pt-10 md:pb-16 w-full flex flex-col justify-start px-10 md:px-20 max-w-7xl mx-auto">
@@ -147,10 +147,6 @@ export default function Work() {
                         Featured Projects
                         <span className="text-[#F2542D]">.</span>
                     </h2>
-
-                    <p className="text-[#444444] dark:text-[#A3A3A3] mt-6 max-w-sm text-lg">
-                        Scroll down to explore the stacked gallery.
-                    </p>
                 </div>
 
                 <div className="w-full max-w-6xl mx-auto px-6 relative mt-2">
