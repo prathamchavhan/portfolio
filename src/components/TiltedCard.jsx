@@ -106,7 +106,7 @@ export default function TiltedCard({
                     <div className="absolute bottom-4 left-4 right-4 z-20 pointer-events-none">
                         <div className="bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg inline-block">
                             <p className="text-[12px] font-medium text-white/90">
-                                {captionText}
+                                Pratham Chavhan
                             </p>
                         </div>
                     </div>

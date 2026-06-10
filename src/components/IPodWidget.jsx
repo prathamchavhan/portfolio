@@ -10,9 +10,10 @@ const songs = [
         artist: "The Weeknd",
         url: "/assets/starboy.mp3"
     },
-    { title: "Perfect", artist: "Ed Sheeran", url: "/assets/perfect.mp3" },
     { title: "I Really Do", artist: "Karan Aujla, Ikky", url: "/assets/karan.mp3" },
     { title: "RUN IT UP", artist: "Hanumankind", url: "/assets/runitup.mp3" },
+    { title: "Perfect", artist: "Ed Sheeran", url: "/assets/perfect.mp3" },
+
     { title: "The Night We Met", artist: "Lord Huron", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
     { title: "Take Me Home, Country Roads", artist: "John Denver", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
     { title: "End of Beginning", artist: "Djo", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" },

@@ -208,7 +208,7 @@ export default function MyStack() {
     const activeCategory = skills.find(s => s.id === activeId);
 
     return (
-        <section id="stack" className="w-full py-32 px-6 md:px-12 bg-black font-sans relative">
+        <section id="stack" className="w-full pt-32 pb-0 px-6 md:px-12 bg-black font-sans relative">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">

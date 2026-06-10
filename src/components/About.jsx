@@ -68,7 +68,7 @@ export default function About() {
         <section
             ref={sectionRef}
             id="about"
-            className="relative w-full min-h-[85vh] pt-10 pb-24 px-4 sm:px-10 z-10 font-sans overflow-x-clip flex justify-center items-center bg-transparent"
+            className="relative w-full min-h-[85vh] pt-0 pb-0 px-4 sm:px-10 z-10 font-sans overflow-x-clip flex justify-center items-center bg-transparent"
         >
             <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row">
 

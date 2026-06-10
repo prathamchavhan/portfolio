@@ -84,7 +84,7 @@ export default function Footer() {
     };
 
     return (
-        <footer id="Footer" className="w-full px-4 md:px-8 py-12 pb-24 dark:bg-black">
+        <footer id="Footer" className="w-full px-4 md:px-8 pt-0 pb-24 dark:bg-black">
             <div className="max-w-7xl mx-auto w-full relative min-h-[500px] lg:h-[600px] rounded-[2rem] md:rounded-[3rem] overflow-hidden group shadow-2xl flex flex-col lg:flex-row">
 
                 {/* Background Video (Neon Retro City / Synthwave) */}

@@ -8,21 +8,21 @@ import TiltedCard from './TiltedCard';
 const galleryImages = [
     {
         id: 1,
-        src: "./assets/vist/image.png",
-        name: "waterfall",
+        src: "./assets/imagegallery/seminar.png",
+        name: "workshop",
         caption: "@pratham"
     },
     {
         id: 2,
 
         src: "./assets/imagegallery/devloper.png",
-        name: "manali",
+        name: "Google Developer Groups Meetup",
         caption: "@pratham"
     },
     {
         id: 3,
         src: "./assets/pra.jpeg",
-        name: "Retro Setup",
+        name: "Among the Peaks",
         caption: "@pratham"
     },
     {
@@ -82,7 +82,7 @@ export default function ImageGallery() {
             <section
                 id="gallery"
                 ref={sectionRef}
-                className="w-full py-32 px-6 md:px-12 bg-black overflow-hidden"
+                className="w-full pt-10 pb-48 px-8 md:px-12 bg-black overflow-hidden"
             >
 
                 <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -186,15 +186,15 @@ export default function ImageGallery() {
                                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                                     animate={{ opacity: 1, scale: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                                    className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+                                    className="relative w-full h-full flex items-center justify-center overflow-hidden"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <img
                                         src={selectedImage.src}
                                         alt={selectedImage.name}
-                                        className="w-full h-full object-cover"
+                                        className="max-w-full max-h-full object-contain"
                                     />
-                                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                                    <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/60 to-transparent">
                                         <h3 className="text-2xl font-bold text-white mb-1">
                                             {selectedImage.name}
                                         </h3>
