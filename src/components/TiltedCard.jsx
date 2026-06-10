@@ -73,7 +73,7 @@ export default function TiltedCard({
             onMouseLeave={handleMouseLeave}
         >
             <motion.div
-                className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/5 shadow-2xl cursor-none"
+                className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0A0A0A]  shadow-2xl cursor-none"
                 style={{
                     rotateX,
                     rotateY,
@@ -106,7 +106,7 @@ export default function TiltedCard({
                     <div className="absolute bottom-4 left-4 right-4 z-20 pointer-events-none">
                         <div className="bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg inline-block">
                             <p className="text-[12px] font-medium text-white/90">
-                                Pratham Chavhan
+                                {captionText}
                             </p>
                         </div>
                     </div>
