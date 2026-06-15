@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import emailjs from '@emailjs/browser';
+import Mascot from './Mascot';
 
 export default function Footer() {
     const [copied, setCopied] = useState(false);
@@ -66,7 +67,7 @@ export default function Footer() {
                         from_name: formData.name,
                         reply_to: formData.email,
                         message: formData.message,
-                        to_name: "Devashish"
+                        to_name: "Pratham"
                     },
                     publicKey
                 );
@@ -215,6 +216,10 @@ export default function Footer() {
                     </div>
                 </div>
 
+            </div>
+            {/* Mascot outside the overflow-hidden container to prevent speech bubble clipping */}
+            <div className="relative max-w-7xl mx-auto w-full h-0 pointer-events-none z-50">
+                <Mascot message="Let's build together!" />
             </div>
         </footer>
     );

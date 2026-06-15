@@ -56,17 +56,17 @@ export default function AboutMe() {
                 </h2>
 
                 <div className="space-y-6">
-                    <div className="text-sm md:text-[15px] font-light text-white/90 leading-relaxed tracking-wide">
-                        I am a <span className="font-medium text-white decoration-[#40E0D0]/30 underline underline-offset-4 decoration-1 hover:text-[#40E0D0] transition-colors">Full Stack Developer</span>
-                        <InlineVideoStack />
-                        with a deep passion for crafting
-                        <span className="italic font-serif"> high-fidelity </span>
-                        digital experiences that bridge the gap between heavy technical architectures and human-centric design.
+                    <div className="text-sm md:text-[15px] font-light text-white/90 leading-8 tracking-wide ">
+                        As   <span className="font-medium text-white decoration-[#40E0D0]/30 underline underline-offset-4 decoration-1 hover:text-[#40E0D0] transition-colors">Developer</span>
+                        <ImagePill />
+                        I build modern digital experiences that combine clean code, thoughtful design, and seamless functionality. From concept to deployment, I enjoy crafting products that are intuitive, reliable, and built to make a lasting impact.
                     </div>
 
-                    <div className="text-sm md:text-[15px] font-light text-white/80 leading-relaxed tracking-wide">
-                        Beyond development, I enjoy traveling
-                        <ImagePill />
+                    <div className="text-sm md:text-[15px] font-light text-white/80 leading-8 tracking-wide -mt-2">
+                        <span className="inline-flex items-center gap-2">
+                            Beyond development, I enjoy traveling
+                            <InlineVideoStack />
+                        </span>
                         , photography, and exploring new experiences.Whether it's discovering new destinations or capturing moments through a camera lens, I find inspiration in the world around me and bring that perspective into the work I create.
                     </div>
                 </div>

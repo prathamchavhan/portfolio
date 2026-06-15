@@ -4,6 +4,7 @@ import AboutMe from "./AboutMe";
 import Education from "./Education";
 import Experience from "./Experience";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
+import Mascot from "@/components/Mascot";
 
 const PointerTitle = ({ title, avatar }) => (
     <div className="flex items-center space-x-2">
