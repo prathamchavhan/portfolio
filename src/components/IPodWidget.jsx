@@ -125,7 +125,7 @@ export default function IPodWidget({ externalOpen = false, onExternalClose }) {
                             className="pointer-events-auto relative w-full sm:w-[340px] max-w-[340px] h-full sm:h-[550px] max-h-[550px] bg-white dark:bg-black sm:rounded-2xl rounded-xl shadow-2xl border border-gray-300 dark:border-gray-700 overflow-hidden flex flex-col"
                         >
                             {/* Fake Mac Window Header */}
-                            <div className="h-8 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border-b border-gray-300 dark:border-gray-700 flex items-center px-4 cursor-grab active:cursor-grabbing justify-between shrink-0">
+                            <div className="h-8 bg-black dark:from-gray-800 dark:to-gray-900 border-b border-black-300 dark:border-black-700 flex items-center px-4 cursor-grab active:cursor-grabbing justify-between shrink-0">
                                 <div className="flex gap-2">
                                     <button onClick={(e) => { e.stopPropagation(); handleClose(); }} className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-red-600 shadow-inner border border-black/10" />
                                     <button className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] shadow-inner border border-black/10" />
@@ -139,7 +139,7 @@ export default function IPodWidget({ externalOpen = false, onExternalClose }) {
                                 className="flex-1 overflow-hidden relative flex items-center justify-center p-2"
                                 style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E") #e5e7eb' }}
                             >
-                                <div className="absolute inset-0 bg-black/5 dark:bg-black/60 pointer-events-none" />
+                                <div className="absolute inset-0 bg-white/5 dark:bg-white/60 pointer-events-none" />
 
                                 {/* Auto-scaling wrapper for mobile overflow protection */}
                                 <div

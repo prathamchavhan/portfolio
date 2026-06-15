@@ -217,7 +217,7 @@ export default function MyStack() {
 
                 </div>
 
-                {/* Mobile: horizontal scrollable tabs */}
+
                 <div className="md:hidden flex overflow-x-auto gap-3 pb-6 no-scrollbar -mx-6 px-6">
                     {skills.map((skill) => (
                         <button
@@ -233,11 +233,11 @@ export default function MyStack() {
                     ))}
                 </div>
 
-                {/* Desktop: side nav on left, content on right */}
+
                 <div className="hidden md:flex md:flex-row gap-12 lg:gap-20 items-start">
-                    {/* Sidebar Wrapper (240px) */}
+
                     <div className="w-[240px] shrink-0">
-                        {/* Sticky Navigation */}
+
                         <nav className="sticky top-32 space-y-1 border-l border-white/5">
                             {skills.map((skill) => (
                                 <button

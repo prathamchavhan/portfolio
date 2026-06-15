@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { FollowerPointerCard } from '@/components/ui/following-pointer';
 
 const YEAR_NOW = new Date().getFullYear();
 
@@ -35,7 +36,22 @@ const projects = [
     }
 ];
 
+const TitleComponent = ({ title, avatar }) => (
+    <div className="flex items-center space-x-2">
+        <img
+            src={avatar}
+            height="24"
+            width="24"
+            alt="avatar"
+            className="rounded-full border-2 border-white/30"
+        />
+        <p className="text-[11px] font-bold text-white tracking-tight">{title}</p>
+    </div>
+);
+
 const ProjectCard = ({ project, index, total, scrollYProgress }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
     const targetScale = 1 - ((total - index) * 0.04);
 
     const scale = useTransform(
@@ -60,65 +76,79 @@ const ProjectCard = ({ project, index, total, scrollYProgress }) => {
             className="sticky flex items-center justify-center w-full"
             style={{ top: `calc(8vh + ${index * 28}px)` }}
         >
-            <motion.div
-                style={{
-                    scale,
-                    backgroundColor: project.bgColor,
-                    border: `1px solid ${borderCol}`
-                }}
-                className="w-full rounded-2xl overflow-hidden shadow-2xl cursor-pointer group origin-top"
-            >
-                <div
-                    className="flex items-center justify-between px-6 pt-5 pb-3"
-                    style={{ borderBottom: `1px solid ${borderCol}` }}
-                >
-                    <span
-                        className="text-xs font-semibold tracking-[0.18em] uppercase"
-                        style={{ color: textSecondary }}
-                    >
-                        {project.year}
-                    </span>
-
-                    <span
-                        className="text-xs font-semibold tracking-[0.18em] uppercase"
-                        style={{ color: textSecondary }}
-                    >
-                        {project.category}
-                    </span>
-                </div>
-
-                <div className="flex items-center justify-between px-6 py-4">
-                    <h3
-                        className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight leading-tight"
-                        style={{ color: textPrimary }}
-                    >
-                        {project.title}
-                    </h3>
-
-                    <a
-                        href={project.link}
-                        className="flex items-center justify-center w-10 h-10 rounded-full transition duration-300 hover:scale-110 shrink-0 ml-4"
-                        style={{
-                            border: `1px solid ${borderCol}`,
-                            color: textPrimary
-                        }}
-                    >
-                        <ArrowUpRight size={18} />
-                    </a>
-                </div>
-
-                <div
-                    className="relative w-full overflow-hidden"
-                    style={{ height: 'clamp(220px, 42vh, 520px)' }}
-                >
-                    <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-[1.03] transition duration-700 ease-out"
+            <FollowerPointerCard
+                title={
+                    <TitleComponent
+                        title={project.title}
+                        avatar="/assets/newside.jpeg"
                     />
-                </div>
-            </motion.div>
+                }
+                className="w-full"
+            >
+                <motion.div
+                    style={{
+                        scale,
+                        backgroundColor: project.bgColor,
+                        border: `1px solid ${borderCol}`
+                    }}
+                    className="w-full rounded-2xl overflow-hidden shadow-2xl group origin-top relative"
+                    data-hide-cursor="true"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
+
+                    <div
+                        className="flex items-center justify-between px-6 pt-5 pb-3"
+                        style={{ borderBottom: `1px solid ${borderCol}` }}
+                    >
+                        <span
+                            className="text-xs font-semibold tracking-[0.18em] uppercase"
+                            style={{ color: textSecondary }}
+                        >
+                            {project.year}
+                        </span>
+
+                        <span
+                            className="text-xs font-semibold tracking-[0.18em] uppercase"
+                            style={{ color: textSecondary }}
+                        >
+                            {project.category}
+                        </span>
+                    </div>
+
+                    <div className="flex items-center justify-between px-6 py-4">
+                        <h3
+                            className="text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight leading-tight"
+                            style={{ color: textPrimary }}
+                        >
+                            {project.title}
+                        </h3>
+
+                        <a
+                            href={project.link}
+                            className="flex items-center justify-center w-10 h-10 rounded-full transition duration-300 hover:scale-110 shrink-0 ml-4"
+                            style={{
+                                border: `1px solid ${borderCol}`,
+                                color: textPrimary
+                            }}
+                        >
+                            <ArrowUpRight size={18} />
+                        </a>
+                    </div>
+
+                    <div
+                        className="relative w-full overflow-hidden"
+                        style={{ height: 'clamp(220px, 42vh, 520px)' }}
+                    >
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover group-hover:scale-[1.03] transition duration-700 ease-out"
+                        />
+                    </div>
+                </motion.div>
+            </FollowerPointerCard>
         </div>
     );
 };

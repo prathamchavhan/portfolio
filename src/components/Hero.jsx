@@ -17,7 +17,7 @@ export default function Hero() {
 
 
     return (
-        <section id="hero" className="relative min-h-[80vh] md:min-h-[85vh] w-full flex items-center overflow-hidden duration-500 font-mono">
+        <section id="hero" className="relative min-h-[80vh] md:min-h-[85vh] w-full flex items-center overflow-hidden duration-500 font-mono justify-center">
 
 
 
@@ -28,7 +28,7 @@ export default function Hero() {
             <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-10 pt-2 pb-4 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
 
                 <TiltedCard
-                    imageSrc="/assets/smile.png"
+                    imageSrc="/assets/imagegallery/pro.png"
                     altText="Pratham "
                     captionText="Pratham "
                     containerHeight="300px"
