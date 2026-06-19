@@ -208,11 +208,11 @@ export default function MyStack() {
     const activeCategory = skills.find(s => s.id === activeId);
 
     return (
-        <section id="stack" className="w-full pt-32 pb-0 px-6 md:px-12 bg-black font-sans relative">
+        <section id="stack" className="w-full pt-10 pb-0 px-6 md:px-12 bg-black font-sans relative">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-                        My stacks
+                    <h2 className="text-3xl md:text-[45px] font-black font-semibold text-white">
+                        My Stacks<span className="text-[#F2542D]">.</span>
                     </h2>
 
                 </div>
@@ -243,7 +243,7 @@ export default function MyStack() {
                                 <button
                                     key={skill.id}
                                     onClick={() => setActiveId(skill.id)}
-                                    className={`w-full text-left pl-5 pr-4 py-3 text-[17px] font-medium transition-all duration-300 relative ${activeId === skill.id
+                                    className={`w-full text-left pl-5 pr-4 py-3 text-[19px] font-medium transition-all duration-300 relative ${activeId === skill.id
                                         ? 'text-white'
                                         : 'text-zinc-500 hover:text-zinc-300'
                                         }`}
