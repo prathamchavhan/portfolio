@@ -39,7 +39,8 @@ export const metadata = {
 };
 
 export const viewport = {
-  width: 1440,
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
@@ -48,7 +49,7 @@ export default function RootLayout({ children }) {
       <head>
         <style dangerouslySetInnerHTML={{
           __html: `
-          @media screen and (max-width: 1439px) {
+          @media screen and (min-width: 768px) and (max-width: 1439px) {
             html {
                zoom: calc(100vw / 1440);
             }
