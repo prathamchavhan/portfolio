@@ -23,24 +23,33 @@ export default function MobileHero() {
                 />
             </motion.div>
 
-            {/* Text Content */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
                 className="flex flex-col items-center text-center w-full"
             >
-                <p className="text-[10px] font-semibold tracking-[0.25em] text-[#666666] uppercase mb-3">
+                <p className="text-[12px] font-medium text-[#737373] mb-3">
+                    Hey there, I'm
+                </p>
+
+                <h2 className="text-[24px] font-semibold tracking-tight text-black dark:text-white mb-3">
+                    Pratham Chavhan
+                </h2>
+
+                <p className="text-[9px] font-medium tracking-[0.25em] text-[#A1A1AA] uppercase mb-4">
                     Full Stack Developer + AI Builder
                 </p>
 
                 <h1 className="text-[24px] font-medium tracking-tight text-black dark:text-[#EAEAEA] leading-[1.15] mb-4">
-                    Creating scalable products across the full stack<span className="text-[#F2542D]">.</span>
+                    Creating scalable products across the full stack
+                    <span className="text-[#F2542D]">.</span>
                 </h1>
 
                 <p className="text-[14px] text-[#444444] dark:text-[#A3A3A3] font-light leading-relaxed mb-5 max-w-xs">
                     Obsessed with building digital products that feel as good as they function.
                 </p>
+
 
                 <a
                     href="https://www.google.com/maps?q=Nagpur,+Maharashtra,+India"
@@ -52,6 +61,6 @@ export default function MobileHero() {
                     <span>Nagpur, Maharashtra, India</span>
                 </a>
             </motion.div>
-        </section>
+        </section >
     );
 }
