@@ -78,6 +78,7 @@ const projects = [
     }
 ];
 
+
 const ProjectCard = ({ project, index, total, scrollYProgress, setIsHovered }) => {
     const targetScale = 1 - ((total - index) * 0.04);
     const scale = useTransform(
@@ -234,7 +235,7 @@ export default function Work() {
         <section
             ref={sectionRef}
             id="work"
-            className="relative w-full bg-black pt-20 pb-0"
+            className="relative w-full bg-black pt-20 pb-0 hidden md:block"
         >
             <div className="max-w-7xl mx-auto px-6 mb-20">
                 <p className="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase mb-4">
@@ -263,6 +264,8 @@ export default function Work() {
                     scrollYProgress={scrollYProgress}
                 />
             </div>
+
+
 
             {/* Custom Cursor / Floating Label */}
             <motion.div
