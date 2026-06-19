@@ -67,16 +67,16 @@ const MobileStackCard = ({ project, index, total, scrollYProgress }) => {
 
     return (
         <div
-            className="sticky flex items-center justify-center w-full min-h-[55vh] mb-6"
-            style={{ top: `calc(12vh + ${index * 30}px)` }}
+            className="sticky flex items-start justify-center w-full pt-2 mb-2"
+            style={{ top: `calc(10vh + ${index * 28}px)` }}
         >
             <motion.div
                 style={{ scale, backgroundColor: project.leftBg }}
-                className="w-full rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.25)] flex flex-col"
+                className="w-full rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.2)] flex flex-col"
             >
                 {/* Background Image Banner */}
                 <div
-                    className="w-full h-40 bg-cover bg-center"
+                    className="w-full h-36 bg-cover bg-center"
                     style={{
                         backgroundImage: `url(${project.bgImage})`,
                         backgroundColor: project.rightBg,
@@ -84,45 +84,45 @@ const MobileStackCard = ({ project, index, total, scrollYProgress }) => {
                 />
 
                 {/* Card Content */}
-                <div className="p-5">
-                    <div className="flex items-center justify-between mb-2">
+                <div className="p-4">
+                    <div className="flex items-center justify-between mb-1.5">
                         <h3
-                            className="text-[18px] font-bold tracking-tight"
+                            className="text-[16px] font-bold tracking-tight"
                             style={{ color: project.brandColor }}
                         >
                             {project.brand}
                         </h3>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">
                             {project.year}
                         </span>
                     </div>
 
-                    <h4 className="text-[15px] font-medium leading-snug mb-3 text-black">
+                    <h4 className="text-[14px] font-medium leading-snug mb-2 text-black">
                         {project.title}
                     </h4>
 
-                    <div className="flex flex-wrap gap-x-3 gap-y-1 mb-4">
+                    <div className="flex flex-wrap gap-x-2 gap-y-1 mb-3">
                         {project.tags.map((tag, i) => (
-                            <div key={i} className="flex items-center gap-1.5">
-                                {i !== 0 && <span className="w-1 h-1 rounded-full bg-gray-400" />}
-                                <span className="text-[12px] font-semibold text-gray-700">{tag}</span>
+                            <div key={i} className="flex items-center gap-1">
+                                {i !== 0 && <span className="w-0.5 h-0.5 rounded-full bg-gray-400" />}
+                                <span className="text-[11px] font-semibold text-gray-600">{tag}</span>
                             </div>
                         ))}
                     </div>
 
-                    <p className="text-[13px] text-gray-600 leading-relaxed mb-4 line-clamp-3">
+                    <p className="text-[12px] text-gray-500 leading-relaxed mb-3 line-clamp-2">
                         {project.description}
                     </p>
 
                     <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                             {project.category}
                         </span>
                         <a
                             href="#"
-                            className="bg-black text-white p-2.5 rounded-full active:scale-95 transition duration-200"
+                            className="bg-black text-white p-2 rounded-full active:scale-95 transition duration-200"
                         >
-                            <ArrowUpRight size={16} />
+                            <ArrowUpRight size={14} />
                         </a>
                     </div>
                 </div>
@@ -142,21 +142,21 @@ const MobileShowAllCard = ({ index, total, scrollYProgress }) => {
 
     return (
         <div
-            className="sticky flex items-center justify-center w-full min-h-[40vh] mb-6"
-            style={{ top: `calc(12vh + ${index * 30}px)` }}
+            className="sticky flex items-center justify-center w-full py-6"
+            style={{ top: `calc(10vh + ${index * 28}px)` }}
         >
             <motion.div
                 style={{ scale }}
-                className="w-full rounded-2xl flex items-center justify-center py-14"
+                className="w-full rounded-2xl flex items-center justify-center py-10"
             >
                 <Link
                     href="https://github.com/prathamchavhan"
-                    className="flex flex-col items-center gap-5"
+                    className="flex flex-col items-center gap-4"
                 >
-                    <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-transform">
-                        <ArrowUpRight size={32} className="text-white" />
+                    <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-transform">
+                        <ArrowUpRight size={26} className="text-white" />
                     </div>
-                    <span className="text-2xl font-black text-white tracking-tight">
+                    <span className="text-xl font-black text-white tracking-tight">
                         See All Projects
                     </span>
                 </Link>
@@ -179,13 +179,13 @@ export default function MobileWork() {
     return (
         <section
             ref={sectionRef}
-            className="md:hidden relative w-full bg-black pt-16 pb-0 px-4"
+            className="md:hidden relative w-full bg-black pt-8 pb-0 px-4"
         >
-            <div className="mb-10">
-                <p className="text-[10px] font-bold tracking-[0.3em] text-gray-500 uppercase mb-3">
+            <div className="mb-6">
+                <p className="text-[10px] font-bold tracking-[0.3em] text-gray-500 uppercase mb-2">
                     Selected Works
                 </p>
-                <h2 className="text-[28px] font-black text-white leading-tight">
+                <h2 className="text-[24px] font-black text-white leading-tight">
                     Featured Projects<span className="text-[#F2542D]">.</span>
                 </h2>
             </div>
